@@ -1,6 +1,7 @@
 {
+  //CUBIT And State
   "Cubit": {
-    "prefix": "fcubit",
+    "prefix": "flcubit",
     "body": [
       "import 'package:bloc/bloc.dart';",
       "import 'package:freezed_annotation/freezed_annotation.dart';",
@@ -14,8 +15,8 @@
     ],
     "description": "Generate cubit code"
   },
-  "Bloc State": {
-    "prefix": "fcstate",
+  "Cubit State": {
+    "prefix": "flstate",
     "body": [
       "\"part of ${TM_FILENAME_BASE/(.*)state/$1/}cubit.dart\"",
       "@freezed",
@@ -24,5 +25,29 @@
       "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.loading($2) = _Loading;",
       "}"
     ]
-  }
+  },
+  "Sizedbox with height": {
+    "prefix": "sbh",
+    "body": ["SizedBox(", "height: $1.h,", "),"],
+    "description": "Sized box with height"
+  },
+  "Sizedbox with width": {
+    "prefix": "sbw",
+    "body": ["SizedBox(", "width: $1.w,", "),"],
+    "description": "Sized box with width"
+  },
+  "Text theme variable": {
+    "prefix": "flvtxt",
+    "body": ["final textTheme = Theme.of(context).textTheme;"],
+    "description": "Generate text theme boilerplate"
+  },"Text theme for textstyle": {
+    "prefix": "fltxt",
+    "body": [" Theme.of(context).textTheme.$1"],
+    "description": "Generate text theme for text Style"
+  },
+  "Generate mediaquery size":{
+    "prefix":"flsize",
+    "body":["final Size size = MediaQuery.of(context).size;"],
+    "description":"Generate mediaquery size"
+  },
 }
