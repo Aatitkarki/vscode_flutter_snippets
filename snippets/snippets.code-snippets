@@ -1,0 +1,28 @@
+{
+  "Cubit": {
+    "prefix": "fcubit",
+    "body": [
+      "import 'package:bloc/bloc.dart';",
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:injectable/injectable.dart';",
+      "part '${TM_FILENAME_BASE}.freezed.dart';",
+      "part ${TM_FILENAME_BASE/(.*)cubit/$1/}state.dart",
+      "@injectable",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} extends Cubit<${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State> {",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() : super();",
+      "}"
+    ],
+    "description": "Generate cubit code"
+  },
+  "Bloc State": {
+    "prefix": "fcstate",
+    "body": [
+      "\"part of ${TM_FILENAME_BASE/(.*)state/$1/}cubit.dart\"",
+      "@freezed",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
+      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.initial($1) = _Initial;",
+      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.loading($2) = _Loading;",
+      "}"
+    ]
+  }
+}
