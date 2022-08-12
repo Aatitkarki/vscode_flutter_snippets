@@ -7,7 +7,7 @@
       "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:injectable/injectable.dart';",
       "part '${TM_FILENAME_BASE}.freezed.dart';",
-      "part ${TM_FILENAME_BASE/(.*)cubit/$1/}state.dart",
+      "part '${TM_FILENAME_BASE/(.*)cubit/$1/}state.dart'",
       "@injectable",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} extends Cubit<${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State> {",
       "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() : super();",
@@ -45,9 +45,18 @@
     "body": [" Theme.of(context).textTheme.$1"],
     "description": "Generate text theme for text Style"
   },
-  "Generate mediaquery size":{
-    "prefix":"flsize",
-    "body":["final Size size = MediaQuery.of(context).size;"],
-    "description":"Generate mediaquery size"
+  "Generate mediaquery size vairable":{
+    "prefix":"flvsize",
+    "body":["final Size size = MediaQuery.of(context).size$1;"],
+    "description":"Generate mediaquery size variable"
+  },
+  "Generate mediaquery height":{
+    "prefix":"flheight",
+    "body":["MediaQuery.of(context).size.height$1;"],
+    "description":"Generate mediaquery width"
+  },"Generate mediaquery width":{
+    "prefix":"flwidth",
+    "body":["MediaQuery.of(context).size.width$1;"],
+    "description":"Generate mediaquery width"
   },
 }

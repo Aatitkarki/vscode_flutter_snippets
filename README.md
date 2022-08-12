@@ -1,7 +1,7 @@
 # fltsht README
 
-The readme for the fltsht package.
-
+To package the snippets , 'vsce package'
+To installl 'code --install
 ## Features
 
 - Flutter bloc snippets
