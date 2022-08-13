@@ -26,6 +26,24 @@
       "}"
     ]
   },
+  "Flutter Freezed datamodel": {
+    "prefix": "flfmodel",
+    "description": "Generate freezed data model",
+    "body": [
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "part '${TM_FILENAME_BASE/(.*)/$1/}.freezed.dart';",
+
+      "part '${TM_FILENAME_BASE/(.*)/$1/}.g.dart';",
+
+      "@freezed",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Model with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Model {",
+      "  const ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Model._();",
+      "  const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Model() = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Model;",
+      "  factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Model.fromJson(Map<String, dynamic> json) =>",
+      "      _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}ModelFromJson(json);",
+      "}"
+    ]
+  },
   "Sizedbox with height": {
     "prefix": "sbh",
     "body": ["SizedBox(", "height: $1.h,", "),"],
@@ -40,23 +58,25 @@
     "prefix": "flvtxt",
     "body": ["final textTheme = Theme.of(context).textTheme;"],
     "description": "Generate text theme boilerplate"
-  },"Text theme for textstyle": {
+  },
+  "Text theme for textstyle": {
     "prefix": "fltxt",
     "body": [" Theme.of(context).textTheme.$1"],
     "description": "Generate text theme for text Style"
   },
-  "Generate mediaquery size vairable":{
-    "prefix":"flvsize",
-    "body":["final Size size = MediaQuery.of(context).size$1;"],
-    "description":"Generate mediaquery size variable"
+  "Generate mediaquery size vairable": {
+    "prefix": "flvsize",
+    "body": ["final Size size = MediaQuery.of(context).size$1;"],
+    "description": "Generate mediaquery size variable"
   },
-  "Generate mediaquery height":{
-    "prefix":"flheight",
-    "body":["MediaQuery.of(context).size.height$1;"],
-    "description":"Generate mediaquery width"
-  },"Generate mediaquery width":{
-    "prefix":"flwidth",
-    "body":["MediaQuery.of(context).size.width$1;"],
-    "description":"Generate mediaquery width"
+  "Generate mediaquery height": {
+    "prefix": "flheight",
+    "body": ["MediaQuery.of(context).size.height$1;"],
+    "description": "Generate mediaquery width"
   },
+  "Generate mediaquery width": {
+    "prefix": "flwidth",
+    "body": ["MediaQuery.of(context).size.width$1;"],
+    "description": "Generate mediaquery width"
+  }
 }
