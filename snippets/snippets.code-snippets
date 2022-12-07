@@ -18,7 +18,7 @@
   "Cubit State": {
     "prefix": "flstate",
     "body": [
-      "\"part of ${TM_FILENAME_BASE/(.*)state/$1/}cubit.dart\"",
+      "part of '${TM_FILENAME_BASE/(.*)state/$1/}cubit.dart';",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
       "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.initial($1) = _Initial;",
