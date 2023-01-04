@@ -10,7 +10,7 @@
       "part '${TM_FILENAME_BASE/(.*)cubit/$1/}state.dart';",
       "@injectable",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} extends Cubit<${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State> {",
-      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() : super();",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() : super(${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.initial());",
       "}"
     ],
     "description": "Generate cubit code"
@@ -21,33 +21,36 @@
       "part of '${TM_FILENAME_BASE/(.*)state/$1/}cubit.dart';",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
-      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.initial($1) = _Initial;",
-      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.loading($2) = _Loading;",
+      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.initial() = _Initial;",
+      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.loading() = _Loading;",
+      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.error({required String message}) = _Error;",
+      "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.success({$1}) = _Success;",
       "}"
     ]
-  },"Cubit API call": {
+  },
+  "Cubit API call": {
     "prefix": "flcapi",
     "description": "Generate api call function",
     "body": [
-   " void $1() async {",
-   "emit(const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.loading());",
-   " final response = await $2;",
-   " emit(",
-   "   response.fold(",
-   "     (error) => error.when(",
-   "       serverError: (message) => ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: message),",
-   "       validationsError: (message, errors) =>",
-   "           ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: message),",
-   "       noInternet: () =>",
-   "           const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: 'No Internet Connection'),",
-   "       unAuthorized: () =>",
-   "           const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: 'UnAuthorized'),",
-   "     ),",
-   "     (response) => ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.success(",
-   "         $3),",
-   "   ),",
-   " );",
-  "}"
+      " void $1() async {",
+      "emit(const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.loading());",
+      " final response = await $2;",
+      " emit(",
+      "   response.fold(",
+      "     (error) => error.when(",
+      "       serverError: (message) => ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: message),",
+      "       validationsError: (message, errors) =>",
+      "           ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: message),",
+      "       noInternet: () =>",
+      "           const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: 'No Internet Connection'),",
+      "       unAuthorized: () =>",
+      "           const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: 'UnAuthorized'),",
+      "     ),",
+      "     (response) => ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.success(",
+      "         $3),",
+      "   ),",
+      " );",
+      "}"
     ]
   },
   "Flutter Freezed datamodel": {
