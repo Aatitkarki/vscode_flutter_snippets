@@ -7,7 +7,7 @@
       "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:injectable/injectable.dart';",
       "part '${TM_FILENAME_BASE}.freezed.dart';",
-      "part '${TM_FILENAME_BASE/(.*)cubit/$1/}state.dart'",
+      "part '${TM_FILENAME_BASE/(.*)cubit/$1/}state.dart';",
       "@injectable",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} extends Cubit<${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State> {",
       "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() : super();",
@@ -24,6 +24,30 @@
       "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.initial($1) = _Initial;",
       "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}.loading($2) = _Loading;",
       "}"
+    ]
+  },"Cubit API call": {
+    "prefix": "flcapi",
+    "description": "Generate api call function",
+    "body": [
+   " void $1() async {",
+   "emit(const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.loading());",
+   " final response = await $2;",
+   " emit(",
+   "   response.fold(",
+   "     (error) => error.when(",
+   "       serverError: (message) => ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: message),",
+   "       validationsError: (message, errors) =>",
+   "           ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: message),",
+   "       noInternet: () =>",
+   "           const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: 'No Internet Connection'),",
+   "       unAuthorized: () =>",
+   "           const ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.error(message: 'UnAuthorized'),",
+   "     ),",
+   "     (response) => ${TM_FILENAME_BASE/(.*)_cubit/${1:/pascalcase}/}State.success(",
+   "         $3),",
+   "   ),",
+   " );",
+  "}"
     ]
   },
   "Flutter Freezed datamodel": {
