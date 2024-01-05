@@ -1,0 +1,21 @@
+{
+  "Generate Mongoose Model": {
+    "prefix": "tsmodel",
+    "body": [
+      "import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';",
+      "import { Document } from 'mongoose';",
+      "",
+      "export type ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Document = ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} & Document;",
+      "",
+      "@Schema({ timestamps: true })",
+      "export class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
+      "  ${2:@Prop({ type: String, required: true }) property1: string;",
+      "  ${3:@Prop({ type: Number, required: true }) property2: number;",
+      "  // Add more properties as needed",
+      "}",
+      "",
+      "export const ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Schema = SchemaFactory.createForClass(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/});"
+    ],
+    "description": "Generate Mongoose Model for TypeScript"
+  }
+}
